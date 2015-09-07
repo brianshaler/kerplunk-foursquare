@@ -1,0 +1,53 @@
+{
+  "name": "kerplunk-foursquare",
+  "displayName": "Foursquare",
+  "description": "",
+  "version": "0.0.1",
+  "kerplunk": {
+    "permissions": {
+      "kerplunk-activityitem": {
+        "models": [
+          "ActivityItem"
+        ]
+      },
+      "kerplunk-identity": {
+        "models": [
+          "Identity"
+        ]
+      }
+    },
+    "recommended": [
+      "kerplunk-foursquare-characteristic",
+      "kerplunk-foursquare-place",
+      "kerplunk-foursquare-archive",
+      "kerplunk-foursquare-stats",
+      "kerplunk-foursquare-tweets",
+      "kerplunk-globe"
+    ]
+  },
+  "keywords": [
+    "kerplunk-plugin",
+    "kp:Social Networking",
+    "kp:Foursquare"
+  ],
+  "engines": {
+    "node": ">=0.10"
+  },
+  "main": "./lib/foursquare.js",
+  "dependencies": {
+    "lodash": "^3.7.0",
+    "node-foursquare": "^0.3.0",
+    "react": "^0.13.2",
+    "when": "^3.7.2"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.1",
+    "glut": "0.0.1",
+    "glut-coffee-amdify": "0.0.0",
+    "gulp": "^3.8.8",
+    "gulp-coffee": "^2.3.1"
+  },
+  "scripts": {
+    "prepublish": "rm -rf ./lib ./public && gulp"
+  }
+}
