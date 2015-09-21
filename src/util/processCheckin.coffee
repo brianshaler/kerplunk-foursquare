@@ -3,17 +3,17 @@ Promise = require 'when'
 checkinToActivityItem = require './checkinToActivityItem'
 userToIdentity = require './userToIdentity'
 
-createActivityItem = (ActivityItem, data) ->
-  Promise.promise (resolve, reject) ->
-    ActivityItem.getOrCreate data, (err, item, identity) ->
-      return reject err if err
-      resolve
-        item: item
-        identity: identity
-
 module.exports = (System) ->
   ActivityItem = System.getModel 'ActivityItem'
   Identity = System.getModel 'Identity'
+
+  createActivityItem = (data) ->
+    Promise.promise (resolve, reject) ->
+      ActivityItem.getOrCreate data, (err, item, identity) ->
+        return reject err if err
+        resolve
+          item: item
+          identity: identity
 
   (checkin) ->
     if checkin.type != 'checkin' or !checkin.venue?.name?
@@ -24,11 +24,11 @@ module.exports = (System) ->
       identity: userToIdentity checkin.user
       item: checkinToActivityItem checkin
 
-    createActivityItem ActivityItem, data
+    createActivityItem data
     .then (result) ->
       {item, identity} = result
 
-      identity.attributes = {} if !identity.attributes?
+      identity.attributes = {} unless identity.attributes?
       identity.attributes.isFriend = true
       identity.updatedAt = new Date()
 
@@ -47,9 +47,7 @@ module.exports = (System) ->
         identity: identity
     # .then (result) ->
     #   addCharacteristics result.item, result.identity, checkin
-    .then (result) ->
-      {item, identity} = result
-
+    .then ({item, identity}) ->
       item.attributes = {} unless item.attributes?
       item.attributes.isFriend = identity.attributes.isFriend
       item.markModified 'attributes'
