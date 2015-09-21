@@ -60,27 +60,14 @@ module.exports = (System) ->
 
   globals: _.clone globals, true
 
-  crons: [
-    {
-      frequency: 120
+  jobs:
+    getCheckins:
+      frequency: 600 # 120
       task: (finished) ->
         API.getCheckins()
-        .then ->
-          finished()
-        .catch (err) ->
-          console.log 'cron error', err.stack ? err
-          finished()
-    }
-    {
-      frequency: 3600
+    getMyCheckins:
+      frequency: 36000
       task: (finished) ->
         opt =
           order: "asc"
         API.getMyCheckins opt
-        .then ->
-          finished()
-        .catch (err) ->
-          console.log 'cron error', err.stack ? err
-          finished()
-    }
-  ]
