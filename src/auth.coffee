@@ -1,3 +1,5 @@
+Promise = require 'when'
+
 userToIdentity = require './util/userToIdentity'
 
 module.exports = (System, getFoursquare) ->
