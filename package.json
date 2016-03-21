@@ -2,7 +2,7 @@
   "name": "kerplunk-foursquare",
   "displayName": "Foursquare",
   "description": "Authenticate to the Foursquare API",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "kerplunk": {
     "permissions": {
       "kerplunk-activityitem": {
