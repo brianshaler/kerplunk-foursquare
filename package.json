@@ -35,7 +35,7 @@
   },
   "main": "./lib/foursquare.js",
   "dependencies": {
-    "lodash": "^3.7.0",
+    "lodash": "^4.6.1",
     "node-foursquare": "^0.3.0",
     "react": "^0.13.2",
     "when": "^3.7.2"
